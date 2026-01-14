@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Dashboard</h1>
+  <h2>Favorite Companies</h2>
+  <ul>
+    <% user.favorites.forEach(company => { %>
+      <li>
+        <%= company.name %>
+        <form action="/user/remove-favorite" method="post" style="display:inline;">
+          <input type="hidden" name="companyId" value="<%= company._id %>">
+          <button type="submit">Remove</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+  <h2>All Companies</h2>
+  <ul>
+    <% companies.forEach(company => { %>
+      <li>
+        <%= company.name %>
+        <form action="/user/add-favorite" method="post" style="display:inline;">
+          <input type="hidden" name="companyId" value="<%= company._id %>">
+          <button type="submit">Add to Favorites</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
